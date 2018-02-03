@@ -45,9 +45,9 @@ syn region  pugHtmlConditionalComment start="<!--\%(.*\)>" end="<!\%(.*\)-->" co
 syn region  pugAngular2 matchgroup=pugEnclosure start="(" end=")" contains=htmlEvent
 syn region  pugJavascriptString start=+"+  skip=+\\\("\|$\)+  end=+"\|$+ contained
 syn region  pugJavascriptString start=+'+  skip=+\\\('\|$\)+  end=+'\|$+ contained
-syn region  pugAttributes matchgroup=pugEnclosure start="(" end=")" contained contains=pugJavascriptString,pugHtmlArg,pugAngular2,htmlArg,htmlEvent,htmlCssDefinition,pugVueOn,pugVueBind,pugOperator,pugVueDir nextgroup=@pugComponent
+syn region  pugAttributes matchgroup=pugEnclosure start="(" end=")" contained contains=pugJavascriptString,pugHtmlArg,pugAngular2,htmlArg,htmlEvent,htmlCssDefinition,pugVueOn,pugVueBind,pugOperator,pugVueDir,pugAttribute nextgroup=@pugComponent
 syn match   pugBlockExpansionChar ":\s\+" contained nextgroup=pugTag,pugClassChar,pugIdChar
-syn match   pugClass ".\%(\w\|-\)\+" contained nextgroup=@pugComponent
+syn match   pugClass "\.\%(\w\|-\)\+" contained nextgroup=@pugComponent
 syn match   pugId "#\%(\w\|-\)\+" contained nextgroup=@pugComponent
 syn region  pugDocType start="^\s*\(!!!\|doctype\)" end="$"
 " Unless I'm mistaken, syntax/html.vim requires
@@ -85,6 +85,7 @@ syn match  pugError "\$" contained
 
 syn region pugVueInterpolation matchgroup=PugEnclosure start="{{" end="}}" contained contains=@htmlJS
 
+syn match pugAttribute "\<\(\w\|-\)*\(\>\|=\@=\|)\@=\)" contained
 syn match pugVueOn "@\(\w\|-\|\.\)*" contained
 syn match pugVueBind ":\(\w\|-\|\.\)*" contained
 syn match pugVueDir "v-\(\w\|-\|\.\)*" contained
@@ -96,6 +97,7 @@ hi def link pugScriptLoopKeywords     PreProc
 hi def link pugScriptStatement        PreProc
 hi def link pugHtmlArg                htmlArg
 hi def link pugAttributeString        String
+hi def link pugAttribute              Type
 hi def link pugAttributesDelimiter    Identifier
 hi def link pugBlockExpansionChar     Special
 hi def link pugPipeChar               Special
@@ -116,7 +118,7 @@ hi def link pugVueBind                Directory
 hi def link pugVueDir                 Directory
 hi def link pugOperator               Operator
 hi def link pugElement                Statement
-hi def link pugTag                    NonText
+hi def link pugTag                    Directory
 
 let b:current_syntax = "pug"
 
