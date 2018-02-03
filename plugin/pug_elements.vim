@@ -200,7 +200,7 @@ let g:pug_elements = [
       \'tref',
       \'tr',
       \'tspan',
-      \'tt'
+      \'tt',
       \'ul',
       \'unknown',
       \'use',

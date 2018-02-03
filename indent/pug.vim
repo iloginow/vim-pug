@@ -60,7 +60,7 @@ function! GetPugIndent()
     return increase
   elseif line =~? '^\v%('.g:pug_self_closing_tags.')>'
     return indent
-  elseif group =~? '\v^%(pugAttributesDelimiter|pugClass|pugId|htmlTagName|htmlSpecialTagName|pugFilter|pugTagBlockChar)$'
+  elseif group =~? '\v^%(pugAttributesDelimiter|pugClass|pugId|pugElement|pugFilter|pugTagBlockChar)$'
     return increase
   else
     return indent

@@ -36,7 +36,7 @@ syn region  pugJavascript matchgroup=pugJavascriptChar start="-" skip=",\s*$" en
 syn cluster pugTop contains=pugBegin,pugComment,pugHtmlComment,pugJavascript
 syn match   pugBegin "^\s*\%([<>]\|&[^=~ ]\)\@!" nextgroup=PugElement,pugTag,pugClassChar,pugIdChar,pugPlainChar,pugJavascript,pugScriptConditional,pugScriptStatement,pugPipedText
 syn match   pugTag "+\?\<[[:alnum:]_-]\+\%(:\w\+\)\=" contained nextgroup=@pugComponent,pugId,PugClass
-execute 'syn match PugElement "+\?\<\(' . join(g:pug_elements, '\|') . '\)\%(:\w\+\)\=" contained nextgroup=@pugComponent,pugId,PugClass'
+execute 'syn match PugElement "+\?\<\(' . join(g:pug_elements, '\|') . '\)\(-\|\w\)\@!\%(:\w\+\)\=" contained nextgroup=@pugComponent,pugId,PugClass'
 syn cluster pugComponent contains=pugAttributes,pugBlockExpansionChar,pugPlainChar,pugJavascript,pugTagBlockChar,pugTagInlineText
 syntax keyword pugCommentTodo  contained TODO FIXME XXX TBD
 syn match   pugComment '\(\s\+\|^\)\/\/.*$' contains=pugCommentTodo,@Spell
@@ -47,8 +47,8 @@ syn region  pugJavascriptString start=+"+  skip=+\\\("\|$\)+  end=+"\|$+ contain
 syn region  pugJavascriptString start=+'+  skip=+\\\('\|$\)+  end=+'\|$+ contained
 syn region  pugAttributes matchgroup=pugEnclosure start="(" end=")" contained contains=pugJavascriptString,pugHtmlArg,pugAngular2,htmlArg,htmlEvent,htmlCssDefinition,pugVueOn,pugVueBind,pugOperator,pugVueDir,pugAttribute nextgroup=@pugComponent
 syn match   pugBlockExpansionChar ":\s\+" contained nextgroup=pugTag,pugClassChar,pugIdChar
-syn match   pugClass "\.\%(\w\|-\)\+" contained nextgroup=@pugComponent
-syn match   pugId "#\%(\w\|-\)\+" contained nextgroup=@pugComponent
+syn match   pugClass "\.\%(\w\|-\)\+" contained nextgroup=@pugComponent,pugClass,pugId
+syn match   pugId "#\%(\w\|-\)\+" contained nextgroup=@pugComponent,pugId,pugClass
 syn region  pugDocType start="^\s*\(!!!\|doctype\)" end="$"
 " Unless I'm mistaken, syntax/html.vim requires
 " that the = sign be present for these matches.
