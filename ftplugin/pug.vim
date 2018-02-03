@@ -49,6 +49,10 @@ setlocal comments=://-,:// commentstring=//\ %s
 
 setlocal suffixesadd+=.pug
 
+if exists('&ofu')
+  setlocal omnifunc=pugcomplete#CompletePug
+endif
+
 let b:undo_ftplugin = "setl cms< com< "
       \ " | unlet! b:browsefilter b:match_words | " . s:undo_ftplugin
 
