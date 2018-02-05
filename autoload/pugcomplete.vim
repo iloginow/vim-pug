@@ -560,25 +560,25 @@ function! pugcomplete#CompletePug(findstart, base)
     endif
     " }}}
     " Id, class completion {{{
-    if context =~? "[.#][a-zA-Z0-9_-]*$"
-      if context =~? "#[a-zA-Z0-9_-]*$"
-        let search_for = "id"
-      elseif context =~? "\.[a-zA-Z0-9_-]*$"
-        let search_for = "class"
-      endif
-      let values = pugcomplete#CollectIdorClass(search_for, tag, context, after)
-      let entered_class = matchstr(context, '.*[.#]\zs.*')
+    " if context =~? "[.#][a-zA-Z0-9_-]*$"
+    "   if context =~? "#[a-zA-Z0-9_-]*$"
+    "     let search_for = "id"
+    "   elseif context =~? "\.[a-zA-Z0-9_-]*$"
+    "     let search_for = "class"
+    "   endif
+    "   let values = pugcomplete#CollectIdorClass(search_for, tag, context, after)
+    "   let entered_class = matchstr(context, '.*[.#]\zs.*')
 
-      for m in sort(values)
-        if m =~? '^'.entered_class
-          call add(res, m)
-        elseif m =~? entered_class
-          call add(res2, m)
-        endif
-      endfor
+    "   for m in sort(values)
+    "     if m =~? '^'.entered_class
+    "       call add(res, m)
+    "     elseif m =~? entered_class
+    "       call add(res2, m)
+    "     endif
+    "   endfor
 
-      return res + res2
-    endif
+    "   return res + res2
+    " endif
     " }}}
     " mixin completion {{{
     if context =~? '^+[a-zA-Z0-9_]*'
